@@ -21,7 +21,7 @@ echo '2.4 создание разделов'
  echo ;
  echo;
  echo +200M;
- echo y;
+ #echo y;
  echo t;
  echo 1;
 
@@ -29,21 +29,21 @@ echo '2.4 создание разделов'
  echo;
  echo;
  echo +2G;
- echo y;
+ #echo y;
  
   
  echo n;
  echo;
  echo;
  echo;
- echo y;
+ #echo y;
   
  echo w;
 ) | fdisk /dev/sda
 
 echo 'Ваша разметка диска'
 fdisk -l
-
+umoun -R /mnt  # если возникает ошибка при монтировании в VBox
 echo '2.4.2 Форматирование дисков'
 
 mkfs.fat -F32 /dev/sda1
@@ -66,12 +66,6 @@ mount -o noatime,compress=lzo,space_cache,subvol=arch_snapshots /dev/sda3 /mnt/.
 mount /dev/sda1 /mnt/boot/efi
 umount /mnt 
 
-mount -o noatime,compress=lzo,space_cache,subvol=arch_root /dev/sda3 /mnt
-mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
-mount -o noatime,compress=lzo,space_cache,subvol=arch_var /dev/sda3 /mnt/var/cache
-mount -o noatime,compress=lzo,space_cache,subvol=arch_home /dev/sda3 /mnt/home
-mount -o noatime,compress=lzo,space_cache,subvol=arch_snapshots /dev/sda3 /mnt/.snapshots
-mount /dev/sda1 /mnt/boot
 
 echo '3.1 Выбор зеркал для загрузки.'
 rm -rf /etc/pacman.d/mirrorlist
@@ -85,3 +79,4 @@ echo '3.3 Настройка системы'
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 arch-chroot /mnt sh -c "$(curl -fsSL git.io/archuefi2.sh)"
+
