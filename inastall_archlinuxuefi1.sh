@@ -79,4 +79,4 @@ echo '3.3 Настройка системы'
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 ###arch-chroot /mnt sh -c "$(curl -fsSL git.io/archuefi2.sh)"
-arch-chroot /mnt sh archuefi2.sh
+arch-chroot /mnt sh -c "$(curl -fsSL https://raw.githubusercontent.com/alexdrozd64/script_instal_archlinux/main/archuefi2.sh)"
