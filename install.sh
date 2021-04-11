@@ -120,7 +120,7 @@ function _MENU {
         ;;
       "Включить sshd")
         clear
-        systemctl list-unit-files | grep sddm >/dev/null && systemctl start sshd || echo "no openssh pkg"
+        systemctl list-unit-files | grep sshd >/dev/null && systemctl start sshd || echo "no openssh pkg"
         echo
         echo "Возврат в меню $REPLY"
         echo
