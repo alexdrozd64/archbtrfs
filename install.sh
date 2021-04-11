@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-repo_path="https://raw.githubusercontent.com/alexdrozd64/script_instal_archlinux/main"
+repo_path="https://raw.githubusercontent.com/alexdrozd64/archbtrfs/main"
 install_sh="archuefi1.sh"
 
 loadkeys ru

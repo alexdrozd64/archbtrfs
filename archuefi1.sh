@@ -98,4 +98,4 @@ echo 'fstab'
 genfstab -pU /mnt >> /mnt/etc/fstab
 
 ###arch-chroot /mnt sh -c "$(curl -fsSL git.io/archuefi2.sh)"
-arch-chroot /mnt sh -c "$(curl -L https://raw.githubusercontent.com/alexdrozd64/script_instal_archlinux/main/archuefi2.sh)"
+arch-chroot /mnt sh -c "$(curl -L https://raw.githubusercontent.com/alexdrozd64/archbtrfs/main/archuefi2.sh)"
