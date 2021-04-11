@@ -2,6 +2,8 @@
 
 repo_path="https://raw.githubusercontent.com/alexdrozd64/script_instal_archlinux/main"
 install_sh="archuefi1.sh"
+curl -LO $repo_path/$install_sh
+chmod +x $install_sh
 
 loadkeys ru
 setfont cyr-sun16
@@ -81,7 +83,7 @@ function _ROOT_BOOT_SWAP {
       _ROOT_BOOT_SWAP
       ;;
     "Установить на выбранные разделы")
-      sh -c "$(curl -LO $repo_path/$install_sh $boot $swap $root)"
+      sh $install_sh $boot $swap $root
       exit
       ;;
     "Выход в основное меню")
@@ -125,7 +127,7 @@ function _MENU {
         _MENU
         ;;
       "Установить на ПУСТОЙ диск")
-        sh -c "$(curl -LO $repo_path/$install_sh clean_drive)"
+        sh $install_sh clean_drive
         break
         ;;
       "Установить рядом с существующей системой")
