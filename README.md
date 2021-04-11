@@ -1,2 +1,1 @@
-# script_instal_archlinux
-#
+# Arch btrfs
