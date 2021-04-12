@@ -46,16 +46,16 @@ _install_all (){
 
   mount /dev/sda3 /mnt
   #####создадим подтома под root и домашний каталог пользователя и для снапшотов:
-  btrfs subvolume create /mnt/arch_root
-  btrfs subvolume create /mnt/arch_home
-  btrfs subvolume create /mnt/arch_snapshots
-  btrfs subvolume create /mnt/arch_cache
+  btrfs subvolume create /mnt/@root
+  btrfs subvolume create /mnt/@home
+  btrfs subvolume create /mnt/@snapshots
+  btrfs subvolume create /mnt/@cache
   umount /mnt
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_root /dev/sda3 /mnt
+  mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/sda3 /mnt
   mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_cache /dev/sda3 /mnt/var/cache
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_home /dev/sda3 /mnt/home
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_snapshots /dev/sda3 /mnt/.snapshots
+  mount -o noatime,compress=lzo,space_cache,subvol=@cache /dev/sda3 /mnt/var/cache
+  mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/sda3 /mnt/home
+  mount -o noatime,compress=lzo,space_cache,subvol=@snapshots /dev/sda3 /mnt/.snapshots
   mount /dev/sda1 /mnt/boot/efi
 }
 
