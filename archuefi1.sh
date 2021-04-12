@@ -46,12 +46,12 @@ _install_all (){
 
   mount /dev/sda3 /mnt
   #####создадим подтома под root и домашний каталог пользователя и для снапшотов:
-  btrfs subvolume create /mnt/@root
+  btrfs subvolume create /mnt/@
   btrfs subvolume create /mnt/@home
   btrfs subvolume create /mnt/@snapshots
   btrfs subvolume create /mnt/@cache
   umount /mnt
-  mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/sda3 /mnt
+  mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/sda3 /mnt
   mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
   mount -o noatime,compress=lzo,space_cache,subvol=@cache /dev/sda3 /mnt/var/cache
   mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/sda3 /mnt/home
