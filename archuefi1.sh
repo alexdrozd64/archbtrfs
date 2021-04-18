@@ -74,16 +74,16 @@ else
   mkfs.btrfs -f -L arch $root
   mount $root /mnt
   #####создадим подтома под root и домашний каталог пользователя и для снапшотов:
-  btrfs subvolume create /mnt/arch_root
-  btrfs subvolume create /mnt/arch_home
-  btrfs subvolume create /mnt/arch_snapshots
-  btrfs subvolume create /mnt/arch_cache
+  btrfs subvolume create /mnt/@
+  btrfs subvolume create /mnt/@home
+  btrfs subvolume create /mnt/@snapshots
+  btrfs subvolume create /mnt/@cache
   umount /mnt
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_root $root /mnt
+  mount -o noatime,compress=lzo,space_cache,subvol=@ $root /mnt
   mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_cache $root /mnt/var/cache
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_home $root /mnt/home
-  mount -o noatime,compress=lzo,space_cache,subvol=arch_snapshots $root /mnt/.snapshots
+  mount -o noatime,compress=lzo,space_cache,subvol=@cache $root /mnt/var/cache
+  mount -o noatime,compress=lzo,space_cache,subvol=@home $root /mnt/home
+  mount -o noatime,compress=lzo,space_cache,subvol=@snapshots $root /mnt/.snapshots
   mount $boot /mnt/boot/efi
 fi
 
