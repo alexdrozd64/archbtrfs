@@ -62,12 +62,38 @@ fi
 echo 'Ставим иксы и драйвера'
 pacman -S $gui_install
 
-echo "Ставим XFCE"
-pacman -S xfce4 xfce4-goodies --noconfirm
+flag=0
+echo "Выберите окружение?"
+read -p "1 - XFCE, 2 - GNOME, 3 - KDE: " vm_setting
+if [[ $vm_setting == 1 ]]; then
+  gui_install="xfce4 xfce4-goodies lxdm --noconfirm"
+  flag=1
+  
+elif [[ $vm_setting == 2 ]]; then
+  gui_install="gnome gnome-extra gdm"
+  flag=2
+  
+elif [[ $vm_setting == 3 ]]; then
+  gui_install="plasma kde-applications sddm"
+  flag=3
+  
+fi
+echo 'Ставим выбранное окружение'
+pacman -S $gui_install
 
-echo 'Cтавим DM'
-pacman -S lxdm --noconfirm
-systemctl enable lxdm
+if [[ $flag -eq 1 ]]
+then
+  echo "Запуск сервиса lxdm"
+  systemctl enable lxdm
+elif [[ $flag -eq 2 ]]
+then
+  echo "Запуск сервиса gdm"
+  systemctl enable gdm
+elif [[ $flag -eq 3 ]]
+then
+  echo "Запуск сервиса sddm"
+  systemctl enable sddm
+fi
 
 echo 'Ставим шрифты'
 pacman -S ttf-liberation ttf-dejavu --noconfirm 
