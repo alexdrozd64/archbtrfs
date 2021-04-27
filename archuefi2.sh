@@ -66,7 +66,7 @@ flag=0
 echo "Выберите окружение?"
 read -p "1 - XFCE, 2 - GNOME, 3 - KDE: " vm_setting
 if [[ $vm_setting == 1 ]]; then
-  gui_install="xfce4 xfce4-goodies lxdm --noconfirm"
+  gui_install="xfce4 xfce4-goodies --noconfirm"
   flag=1
   
 elif [[ $vm_setting == 2 ]]; then
@@ -84,6 +84,7 @@ pacman -S $gui_install
 if [[ $flag -eq 1 ]]
 then
   echo "Запуск сервиса lxdm"
+  pacman -S lxdm --noconfirm
   systemctl enable lxdm
 elif [[ $flag -eq 2 ]]
 then
