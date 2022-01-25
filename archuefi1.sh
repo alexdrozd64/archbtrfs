@@ -51,11 +51,11 @@ _install_all (){
   btrfs subvolume create /mnt/@snapshots
   btrfs subvolume create /mnt/@cache
   umount /mnt
-  mount -o noatime,compress=lzo,space_cache,subvol=@ /dev/sda3 /mnt
+  mount -o noatime,compress=lzo,subvol=@ /dev/sda3 /mnt
   mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
-  mount -o noatime,compress=lzo,space_cache,subvol=@cache /dev/sda3 /mnt/var/cache
-  mount -o noatime,compress=lzo,space_cache,subvol=@home /dev/sda3 /mnt/home
-  mount -o noatime,compress=lzo,space_cache,subvol=@snapshots /dev/sda3 /mnt/.snapshots
+  mount -o noatime,compress=lzo,subvol=@cache /dev/sda3 /mnt/var/cache
+  mount -o noatime,compress=lzo,subvol=@home /dev/sda3 /mnt/home
+  mount -o noatime,compress=lzo,subvol=@snapshots /dev/sda3 /mnt/.snapshots
   mount /dev/sda1 /mnt/boot/efi
 }
 
@@ -79,11 +79,11 @@ else
   btrfs subvolume create /mnt/@snapshots
   btrfs subvolume create /mnt/@cache
   umount /mnt
-  mount -o noatime,compress=lzo,space_cache,subvol=@ $root /mnt
+  mount -o noatime,compress=lzo,subvol=@ $root /mnt
   mkdir -p /mnt/{home,boot,boot/efi,var,var/cache,.snapshots}
-  mount -o noatime,compress=lzo,space_cache,subvol=@cache $root /mnt/var/cache
-  mount -o noatime,compress=lzo,space_cache,subvol=@home $root /mnt/home
-  mount -o noatime,compress=lzo,space_cache,subvol=@snapshots $root /mnt/.snapshots
+  mount -o noatime,compress=lzo,subvol=@cache $root /mnt/var/cache
+  mount -o noatime,compress=lzo,subvol=@home $root /mnt/home
+  mount -o noatime,compress=lzo,subvol=@snapshots $root /mnt/.snapshots
   mount $boot /mnt/boot/efi
 fi
 
